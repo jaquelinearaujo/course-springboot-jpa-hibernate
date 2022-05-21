@@ -2,6 +2,7 @@ package com.javacourse.course.services;
 
 import com.javacourse.course.entities.User;
 import com.javacourse.course.repositories.UserRepository;
+import com.javacourse.course.services.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UserService implements Serializable {
 
     public User finById(Long id) {
         Optional<User> user = repository.findById(id);
-        return user.orElse(null);
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
