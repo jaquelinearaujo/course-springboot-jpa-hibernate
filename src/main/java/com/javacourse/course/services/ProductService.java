@@ -5,15 +5,17 @@ import com.javacourse.course.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Component
 @Data
 @AllArgsConstructor
-public class ProductService {
+public class ProductService implements Serializable {
 
     @Autowired
     private ProductRepository repository;

@@ -5,15 +5,16 @@ import com.javacourse.course.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Component
 @Data
 @AllArgsConstructor
-public class UserService {
+public class UserService implements Serializable {
 
     @Autowired
     private UserRepository repository;
@@ -24,7 +25,7 @@ public class UserService {
 
     public User finById(Long id) {
         Optional<User> user = repository.findById(id);
-        return user.get();
+        return user.orElse(null);
     }
 }
 
