@@ -2,10 +2,13 @@ package com.javacourse.course.services;
 
 import com.javacourse.course.entities.User;
 import com.javacourse.course.repositories.UserRepository;
+import com.javacourse.course.services.exceptions.DatabaseException;
 import com.javacourse.course.services.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -34,7 +37,13 @@ public class UserService implements Serializable {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+           throw new DatabaseException(e.getMessage());
+        }
     }
 
     public User update(Long id, User user) {
