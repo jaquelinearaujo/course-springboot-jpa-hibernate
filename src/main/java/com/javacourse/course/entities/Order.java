@@ -3,7 +3,9 @@ package com.javacourse.course.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.javacourse.course.entities.enuns.OrderStatus;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.time.Instant;
 import java.util.Objects;
 
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "tb_order")
