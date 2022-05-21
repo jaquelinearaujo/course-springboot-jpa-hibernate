@@ -26,14 +26,12 @@ public class Product implements Serializable {
     @Getter
     @Setter
     private String description;
-
     @Getter
     @Setter
     private Double price;
     @Getter
     @Setter
     private String imgUrl;
-
     @Getter
     @Setter
     @ManyToMany
